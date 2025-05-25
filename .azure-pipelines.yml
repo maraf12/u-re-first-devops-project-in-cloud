@@ -11,12 +11,12 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'ubuntu-latest'
+      name: my-windows-agent
     steps:
     - task: AzureCLI@2
       inputs:
-        azureSubscription: '<your-service-connection-name>'
-        scriptType: 'bash'
+        azureSubscription: 'my-azure-connection'
+        scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
           az acr login --name devopsacr12345
@@ -28,12 +28,12 @@ stages:
   jobs:
   - job: DeployToAKS
     pool:
-      vmImage: 'ubuntu-latest'
+      name: my-windows-agent
     steps:
     - task: AzureCLI@2
       inputs:
-        azureSubscription: '<your-service-connection-name>'
-        scriptType: 'bash'
+        azureSubscription: 'my-azure-connection'
+        scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
           az aks get-credentials --resource-group devops-rg --name devops-aks

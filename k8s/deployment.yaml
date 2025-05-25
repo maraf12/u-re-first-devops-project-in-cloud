@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aks-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aks-sample
+  template:
+    metadata:
+      labels:
+        app: aks-sample
+    spec:
+      containers:
+      - name: aks-sample
+        image: devopsacr12345.azurecr.io/aks-sample:latest
+        ports:
+        - containerPort: 3000
